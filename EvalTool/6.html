@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+        window.onload = function () {
+ 		if(sessionStorage.getItem('q6_a1') == 1){
+			document.getElementById("q1").checked=true;
+		}
+ 		else if(sessionStorage.getItem('q6_a2') == 1){
+			document.getElementById("q2").checked=true;
+		}
+ 		else if(sessionStorage.getItem('q6_a3') == 1){
+			document.getElementById("q3").checked=true;
+		}
+ 		else if(sessionStorage.getItem('q6_a4') == 1){
+			document.getElementById("q4").checked=true;
+		}		
+	};
+	</script>
+</head>
+
+<body>
+  <p> Navigation </p>
+  <input type="button" value="Last Page" onclick="LastPage()">
+  <input type="button" value="Next Page" onclick="NextPage()">
+
+  <p> Question 6/10 </p>
+  <p>	Which one is not a valid html heading tag</p>
+
+  <input id="q1" name="question" type="radio" value="a"> A)h4<br>
+  <input id="q2" name="question" type="radio" value="b"> B)h3<br>
+  <input id="q3" name="question" type="radio" value="c"> C)h1<br>
+  <input id="q4" name="question" type="radio" value="d"> D)h6<br>
+  <script>
+    function LastPage() {
+      	if(document.getElementById("q1").checked)
+	  	document.getElementById("q1").value=1;
+      	else
+	  	document.getElementById("q1").value=0;
+	if(document.getElementById("q2").checked)
+		document.getElementById("q2").value=1;
+	else
+		document.getElementById("q2").value=0;
+	if(document.getElementById("q3").checked)
+		document.getElementById("q3").value=1;
+	else
+		document.getElementById("q3").value=0;
+	if(document.getElementById("q4").checked)
+		document.getElementById("q4").value=1;
+	else
+		document.getElementById("q4").value=0;
+      	sessionStorage.setItem('q6_a1',document.getElementById("q1").value);
+      	sessionStorage.setItem('q6_a2',document.getElementById("q2").value);
+      	sessionStorage.setItem('q6_a3',document.getElementById("q3").value);
+      	sessionStorage.setItem('q6_a4',document.getElementById("q4").value);
+      window.location.assign("5.html");
+    }
+
+    function NextPage() {
+      	if(document.getElementById("q1").checked)
+	  	document.getElementById("q1").value=1;
+      	else
+	  	document.getElementById("q1").value=0;
+	if(document.getElementById("q2").checked)
+		document.getElementById("q2").value=1;
+	else
+		document.getElementById("q2").value=0;
+	if(document.getElementById("q3").checked)
+		document.getElementById("q3").value=1;
+	else
+		document.getElementById("q3").value=0;
+	if(document.getElementById("q4").checked)
+		document.getElementById("q4").value=1;
+	else
+		document.getElementById("q4").value=0;
+      	sessionStorage.setItem('q6_a1',document.getElementById("q1").value);
+      	sessionStorage.setItem('q6_a2',document.getElementById("q2").value);
+      	sessionStorage.setItem('q6_a3',document.getElementById("q3").value);
+      	sessionStorage.setItem('q6_a4',document.getElementById("q4").value);
+      	window.location.assign("7.html");
+    }
+  </script>
+
+</body>
+</html>

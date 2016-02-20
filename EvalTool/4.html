@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+        window.onload = function () {
+ 		if(sessionStorage.getItem('q4_a1') == 1){
+			document.getElementById("q1").checked=true;
+		}
+ 		else if(sessionStorage.getItem('q4_a2') == 1){
+			document.getElementById("q2").checked=true;
+		}
+ 		else if(sessionStorage.getItem('q4_a3') == 1){
+			document.getElementById("q3").checked=true;
+		}
+ 		else if(sessionStorage.getItem('q4_a4') == 1){
+			document.getElementById("q4").checked=true;
+		}		
+	};
+	</script>
+</head>
+
+<body>
+  	<p> Navigation </p>
+  	<input type="button" value="Last Page" onclick="LastPage()">
+  	<input type="button" value="Next Page" onclick="NextPage()">
+
+  	<p> Question 4/10 </p>
+  	<p> To access the property of a object, you use</p>
+
+  	<input id="q1" name="question" type="radio" value="a"> A)Object.property<br>
+  	<input id="q2" name="question" type="radio" value="b"> B)Object[property]<br>
+  	<input id="q3" name="question" type="radio" value="c"> C)Both a&b<br>
+  	<input id="q4" name="question" type="radio" value="d"> D)None of the above<br>
+  
+  	<script>
+    	function LastPage() {
+      	if(document.getElementById("q1").checked)
+	  	document.getElementById("q1").value=1;
+      	else
+	  	document.getElementById("q1").value=0;
+	if(document.getElementById("q2").checked)
+		document.getElementById("q2").value=1;
+	else
+		document.getElementById("q2").value=0;
+	if(document.getElementById("q3").checked)
+		document.getElementById("q3").value=1;
+	else
+		document.getElementById("q3").value=0;
+	if(document.getElementById("q4").checked)
+		document.getElementById("q4").value=1;
+	else
+		document.getElementById("q4").value=0;
+      	sessionStorage.setItem('q4_a1',document.getElementById("q1").value);
+      	sessionStorage.setItem('q4_a2',document.getElementById("q2").value);
+      	sessionStorage.setItem('q4_a3',document.getElementById("q3").value);
+      	sessionStorage.setItem('q4_a4',document.getElementById("q4").value);
+      	window.location.assign("3.html");
+    	}
+
+    	function NextPage() {
+      	if(document.getElementById("q1").checked)
+	  	document.getElementById("q1").value=1;
+      	else
+	  	document.getElementById("q1").value=0;
+	if(document.getElementById("q2").checked)
+		document.getElementById("q2").value=1;
+	else
+		document.getElementById("q2").value=0;
+	if(document.getElementById("q3").checked)
+		document.getElementById("q3").value=1;
+	else
+		document.getElementById("q3").value=0;
+	if(document.getElementById("q4").checked)
+		document.getElementById("q4").value=1;
+	else
+		document.getElementById("q4").value=0;
+      	sessionStorage.setItem('q4_a1',document.getElementById("q1").value);
+      	sessionStorage.setItem('q4_a2',document.getElementById("q2").value);
+      	sessionStorage.setItem('q4_a3',document.getElementById("q3").value);
+      	sessionStorage.setItem('q4_a4',document.getElementById("q4").value);
+      	window.location.assign("5.html");
+    	}
+  	</script>
+
+</body>
+</html>
