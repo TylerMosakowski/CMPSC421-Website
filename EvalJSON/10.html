@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+        window.onload = function () {
+ 		if(sessionStorage.getItem('q10_a1') == 1){
+			document.getElementById("q1").checked=true;
+		}
+ 		else if(sessionStorage.getItem('q10_a2') == 1){
+			document.getElementById("q2").checked=true;
+		}
+ 		else if(sessionStorage.getItem('q10_a3') == 1){
+			document.getElementById("q3").checked=true;
+		}
+ 		else if(sessionStorage.getItem('q10_a4') == 1){
+			document.getElementById("q4").checked=true;
+		}		
+	};
+	</script>
+</head>
+
+<body>
+    <p> Navigation </p>
+    <input type="button" value="Last Page" onclick="LastPage()">
+    <input type="button" value="Submission" onclick="NextPage()">
+
+    <p> Question 10/10 </p>
+    <p>	What is the top most node in a DOM tree</p>
+
+    <input id="q1" name="question" type="radio" value="a"> A)Document<br>
+    <input id="q2" name="question" type="radio" value="b"> B)Element <br>
+    <input id="q3" name="question" type="radio" value="c"> C)Browser<br>
+    <input id="q4" name="question" type="radio" value="d"> D)Image<br>
+    <script>
+    function LastPage() {
+      	if(document.getElementById("q1").checked)
+	  	document.getElementById("q1").value=1;
+      	else
+	  	document.getElementById("q1").value=0;
+	if(document.getElementById("q2").checked)
+		document.getElementById("q2").value=1;
+	else
+		document.getElementById("q2").value=0;
+	if(document.getElementById("q3").checked)
+		document.getElementById("q3").value=1;
+	else
+		document.getElementById("q3").value=0;
+	if(document.getElementById("q4").checked)
+		document.getElementById("q4").value=1;
+	else
+		document.getElementById("q4").value=0;
+      	sessionStorage.setItem('q10_a1',document.getElementById("q1").value);
+      	sessionStorage.setItem('q10_a2',document.getElementById("q2").value);
+      	sessionStorage.setItem('q10_a3',document.getElementById("q3").value);
+      	sessionStorage.setItem('q10_a4',document.getElementById("q4").value);
+        window.location.assign("9.html");
+    }
+
+    function NextPage() {
+      	if(document.getElementById("q1").checked)
+	  	document.getElementById("q1").value=1;
+      	else
+	  	document.getElementById("q1").value=0;
+	if(document.getElementById("q2").checked)
+		document.getElementById("q2").value=1;
+	else
+		document.getElementById("q2").value=0;
+	if(document.getElementById("q3").checked)
+		document.getElementById("q3").value=1;
+	else
+		document.getElementById("q3").value=0;
+	if(document.getElementById("q4").checked)
+		document.getElementById("q4").value=1;
+	else
+		document.getElementById("q4").value=0;
+      	sessionStorage.setItem('q10_a1',document.getElementById("q1").value);
+      	sessionStorage.setItem('q10_a2',document.getElementById("q2").value);
+      	sessionStorage.setItem('q10_a3',document.getElementById("q3").value);
+      	sessionStorage.setItem('q10_a4',document.getElementById("q4").value);
+        window.location.assign("results.html");
+    }
+    </script>
+
+</body>
+</html>

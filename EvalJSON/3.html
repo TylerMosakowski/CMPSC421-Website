@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+        window.onload = function () {
+ 		if(sessionStorage.getItem('q3_a1') == 1){
+			document.getElementById("q1").checked=true;
+		}
+ 		else if(sessionStorage.getItem('q3_a2') == 1){
+			document.getElementById("q2").checked=true;
+		}
+ 		else if(sessionStorage.getItem('q3_a3') == 1){
+			document.getElementById("q3").checked=true;
+		}
+ 		else if(sessionStorage.getItem('q3_a4') == 1){
+			document.getElementById("q4").checked=true;
+		}		
+	};
+	</script>
+</head>
+
+<body>
+  	<p> Navigation </p>
+  	<input type="button" value="Last Page" onclick="LastPage()">
+  	<input type="button" value="Next Page" onclick="NextPage()">
+
+  	<p> Question 3/10 </p>
+  	<p> If a function is declared as the property of a object it becomes? </p>
+
+  	<input id="q1" name="question" type="radio"  value="a"> A)Global Function<br>
+  	<input id="q2" name="question" type="radio"  value="b"> B)A function of the window object<br>
+  	<input id="q3" name="question" type="radio"  value="c"> C)You can't do this<br>
+  	<input id="q4" name="question" type="radio"  value="d"> D)A method<br>
+  	<script>
+    	function LastPage() {
+      	if(document.getElementById("q1").checked)
+	  	document.getElementById("q1").value=1;
+      	else
+	  	document.getElementById("q1").value=0;
+	if(document.getElementById("q2").checked)
+		document.getElementById("q2").value=1;
+	else
+		document.getElementById("q2").value=0;
+	if(document.getElementById("q3").checked)
+		document.getElementById("q3").value=1;
+	else
+		document.getElementById("q3").value=0;
+	if(document.getElementById("q4").checked)
+		document.getElementById("q4").value=1;
+	else
+		document.getElementById("q4").value=0;
+      	sessionStorage.setItem('q3_a1',document.getElementById("q1").value);
+      	sessionStorage.setItem('q3_a2',document.getElementById("q2").value);
+      	sessionStorage.setItem('q3_a3',document.getElementById("q3").value);
+      	sessionStorage.setItem('q3_a4',document.getElementById("q4").value);
+      	window.location.assign("2.html");
+    	}
+
+    	function NextPage() {
+      	if(document.getElementById("q1").checked)
+	  	document.getElementById("q1").value=1;
+      	else
+	  	document.getElementById("q1").value=0;
+	if(document.getElementById("q2").checked)
+		document.getElementById("q2").value=1;
+	else
+		document.getElementById("q2").value=0;
+	if(document.getElementById("q3").checked)
+		document.getElementById("q3").value=1;
+	else
+		document.getElementById("q3").value=0;
+	if(document.getElementById("q4").checked)
+		document.getElementById("q4").value=1;
+	else
+		document.getElementById("q4").value=0;
+      	sessionStorage.setItem('q3_a1',document.getElementById("q1").value);
+      	sessionStorage.setItem('q3_a2',document.getElementById("q2").value);
+      	sessionStorage.setItem('q3_a3',document.getElementById("q3").value);
+      	sessionStorage.setItem('q3_a4',document.getElementById("q4").value);
+      	window.location.assign("4.html");
+    	}
+  	</script>
+</body>
+</html>

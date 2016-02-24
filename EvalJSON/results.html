@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<p>Here are your Results:</p>
+	<p id="result"></p>
+	<script>
+	function compute(){
+		var result = 0;
+		if(sessionStorage.getItem('q1_a3') == 1)
+			result++;
+		if(sessionStorage.getItem('q2_a3') == 1)
+			result++;
+		if(sessionStorage.getItem('q3_a4') == 1)
+			result++;
+		if(sessionStorage.getItem('q4_a3') == 1)
+			result++;
+		if(sessionStorage.getItem('q5_a4') == 1)
+			result++;
+		if(sessionStorage.getItem('q6_a4') == 1)
+			result++;
+		if(sessionStorage.getItem('q7_a1') == 1)
+			result++;
+		if(sessionStorage.getItem('q8_a2') == 1)
+			result++;
+		if(sessionStorage.getItem('q9_a2') == 1)
+			result++;
+		if(sessionStorage.getItem('q10_a1') == 1)
+			result++;
+		return result.toString();	
+	}
+	document.getElementById("result").innerHTML = compute();
+	</script>
+</body>
+</html>
