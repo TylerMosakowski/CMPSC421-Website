@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="/ThreeRegion/webhome.css" rel="stylesheet" type="text/css">
-    <link href="/ThreeRegion/threeregion.css" rel="stylesheet" type="text/css">
+  <link href="/ThreeRegion/webhome.css" rel="stylesheet" type="text/css"></link>
+  <link href="/ThreeRegion/threeregion.css" rel="stylesheet" type="text/css"></link>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript">
 
@@ -10,15 +10,71 @@
 	    }
 
     </script>
+    <script>
+	function onStart(){
+		var startInstant = ''+parent.myIP+' '+Date.now();
+		console.log(startInstant);
+		parent.sessionStorage.userID = JSON.stringify(startInstant);
+	
+		var myForm = document.getElementById("interact");
+		myForm.setAttribute('target',"cframe");
+		myForm.action = "/EvalJSON/start";
+
+		var hidden=document.createElement("input");
+		hidden.setAttribute("type","hidden");
+		hidden.name = "userID";
+		hidden.value = parent.sessionStorage.userID;
+		myForm.appendChild(hidden);
+		myForm.submit();
+		myForm.removeChild(hidden);
+     	};
+	function onNext(){
+		var qset=$('#qset',parent.frames['cframe'].document);
+		q.fadeOut(100);
+
+		var uQuery= "?userID="+parent.sessionStorage.userID;
+		var qdoc = parent.frames['cframe'].document;
+		var ans = $('input[name=ans]:checked',qdoc).val();
+		if(ans!=undefined){
+			console.log(ans);
+			uQuery += "&answer="+ans;
+		}	
+		getJSONP("/EvalJSON/next"+uQuery,handleJSONP);	
+	};
+	function handlJSONP(obj){
+		obj = JSON.parse(obj);
+		object = obj.Q;
+		var qdoc = parent.frames['cframe'].document;
+		var qset = $('#qset',qdoc);
+		
+		$('#seqnum',qset).html(object.seq);
+		$('#question',qset).html(object.question);
+		$('#choices',qset).empty();
+		for(var e1 in object){
+			if(!e1.indexOf(object)){
+				var p1 = $("<p></p>");
+				var c1 = object[e1];
+				var vname = c1.match(/(?=[\s*\(])[\s*\(]\w+/)
+				var l1 = $("<label>"+"<input type=radio name = ans</input>");
+				p1.append(l1);
+				$('#choices',qset).append(p1);
+			}
+		}
+		if(obj.previousAns){
+			$('input:radio[name=ans][id='+obj.previousAns+']');
+		}
+		qset.fadeIn(600);	
+	}
+    </script>
 </head>
 <body>
 	<div id="headDiv" class="sideroot">
 	    <form id="interact" method="post">
 	     <fieldset>
 	      <!--legend> Navigation </legend-->
-	      <input type="submit" name="Start" id="Start" value="Start" onclick="return false;"/> <br><br>
+	      <input type="submit" name="Start" id="Start" value="Start" onclick="onStart(); return false;"/> <br><br>
 	      <input type="submit" name="Last" id="Last" value="Last" onclick="return false;"/> <br><br>
-	      <input type="submit" name="Next" id="Next" value="Next" onclick="return false;"/> <br><br>
+	      <input type="submit" name="Next" id="Next" value="Next" onclick="onNext(); false;"/> <br><br>
 	      <input type="submit" name="Submit" id="Submit" value="Submit" onclick="return false;"/><br><br>
 	      <input type="submit" name="Email" id="Email" value="Email" onclick="return false;"/> 
 	     </fieldset>
