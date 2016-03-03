@@ -21,26 +21,26 @@ app.set("jsonp callback", true);
 app.get('/', function (req, res) {
 	fs.readFile('home.html', 'utf8', function (err,data) {
 		if (err) {
-			return console.log(err);	
+			return console.log(err);
 		}
 	res.send(data);
-	});	
+	});
 });
 app.get('/about.html', function (req, res) {
 	fs.readFile('about.html', 'utf8', function (err,data) {
 		if (err) {
-			return console.log(err);	
+			return console.log(err);
 		}
 	res.send(data);
-	});	
+	});
 });
 app.get('/side.html', function (req, res) {
 	fs.readFile('side.html', 'utf8', function (err,data) {
 		if (err) {
-			return console.log(err);	
+			return console.log(err);
 		}
 	res.send(data);
-	});	
+	});
 });
 
 app.use(express.static('.'));			// Serves up files from the current directory
@@ -70,7 +70,7 @@ function gettool(req,res){
 			else{
 				console.log("Sent: "+req.path);
 			}
-		}
+		})
 	}
 }
 function sendJSONP(res,uid){
@@ -99,7 +99,7 @@ function handleJSONP(req,res){
 
 app.get('/CloudChat/*', ChatServer.gettool);
 app.get('/Syllabus/*', syllabus.gettool);
-app.get('/EvalJSON/*', startPage.posttool);
+//app.get('/EvalJSON/*', startPage.posttool);
 
 
 app.listen(8080, function() {
