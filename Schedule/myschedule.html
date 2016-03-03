@@ -3,27 +3,21 @@
 <head>
     <title></title>
 	<meta charset="utf-8" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
-        window.onload = function () {
-            var sideFrameWin = parent.document.getElementById("sframe").contentWindow;
-            sideFrameWin.location = "/Schedule/side.html";
-        }
-        $('#Table').append('<table></table>');
-        var Table1 = $('#Table').children();
-        Table1.append("<tr><th>Class # </th> <th> Date</th> <th> Tag </th> <th> topic </topic> <th> Project </th> <th> Notes </th></tr>");
-        // code to grab arrary from JS file
-
-
-        // code to loop through array add to table
-
-
-
-        Table1.append("<tr> <th> Final Project Due: Wednesday, May 4, 2016</th></tr>")
-      
-    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script>
+		var sideFrameWin = parent.document.getElementById("sframe").contentWindow;
+          	sideFrameWin.location = "/Schedule/side.html";
+	</script>
 
 </head>
 <body>
-    <div id="Table"></div>
+    <script src="schedule.js"></script>
+    <table id = "schedule">
+        <tr>
+        </tr>
+    </table>
+</table>
+
+
 </body>
 </html>
