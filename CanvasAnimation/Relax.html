@@ -1,54 +1,199 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- setting up the spinner for the flags -->
+	<style type="text/css">
+		#spinner {
+			-webkit-animation-name: spinner;
+			-webkit-animation-timing-function: linear;
+			-webkit-animation-iteration-count: infinite;
+			-webkit-animation-duration: 7s;
+			animation-name: spinner;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+			animation-duration: 7s;
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+		}
+		@-webkit-keyframes spinner {
+			from
+			{
+				-webkit-transform: rotateY(0deg);
+			}
+			to {
+			    	-webkit-transform: rotateY(-360deg);
+			}
+		}
+		/* all other browsers */
+		@keyframes spinner {
+			from {
+		    		-moz-transform: rotateY(0deg);
+		    		-ms-transform: rotateY(0deg);
+		    		transform: rotateY(0deg);
+		   	}
+		   	to
+		   	{
+			    -moz-transform: rotateY(-360deg);
+			    -ms-transform: rotateY(-360deg);
+			    transform: rotateY(-360deg);
+
+		   	}
+		}
+	</style>
+	<!-- creating the carousel for the flags -->
+	<style type="text/css">
+		.container {
+			width: 210px;
+			height: 140px;
+			position: relative;
+			perspective: 1000px;
+		}
+
+		#carousel {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			transform-style: preserve-3d;
+		}
+
+		#carousel figure {
+			margin: 0;
+			display: block;
+			position: absolute;
+			width: 186px;
+			height: 116px;
+			left: 10px;
+			top: 10px;
+		}
+
+		@-webkit-keyframes spin {
+			0% {
+				-webkit-transform: rotateY(0deg);
+				-moz-transform: rotateY(0deg);
+				-ms-transform: rotateY(0deg);
+				transform: rotateY(0deg);
+			} 5% {
+				-webkit-transform: rotateY(-18deg);
+				-moz-transform: rotateY(-18deg);
+				-ms-transform: rotateY(-18deg);
+				transform: rotateY(-18deg);
+			} 10% {
+				-webkit-transform: rotateY(-36deg);
+				-moz-transform: rotateY(-36deg);
+				-ms-transform: rotateY(-36deg);
+				transform: rotateY(-36deg);
+			} 15% {
+				-webkit-transform: rotateY(-54deg);
+				-moz-transform: rotateY(-54deg);
+				-ms-transform: rotateY(-54deg);
+				transform: rotateY(-54deg);
+			} 20% {
+				-webkit-transform: rotateY(-72deg);
+				-moz-transform: rotateY(-72deg);
+				-ms-transform: rotateY(-72deg);
+				transform: rotateY(-72deg);
+			} 25% {
+				-webkit-transform: rotateY(-90deg);
+				-moz-transform: rotateY(-90deg);
+				-ms-transform: rotateY(-90deg);
+				transform: rotateY(-90deg);
+			} 30% {
+				-webkit-transform: rotateY(-108deg);
+				-moz-transform: rotateY(-108deg);
+				-ms-transform: rotateY(-108deg);
+				transform: rotateY(-108deg);
+			} 35% {
+				-webkit-transform: rotateY(-126deg);
+				-moz-transform: rotateY(-126deg);
+				-ms-transform: rotateY(-126deg);
+				transform: rotateY(-126deg);
+			} 40% {
+				-webkit-transform: rotateY(-144deg);
+				-moz-transform: rotateY(-144deg);
+				-ms-transform: rotateY(-144deg);
+				transform: rotateY(-144deg);
+			} 45% {
+				-webkit-transform: rotateY(-162deg);
+				-moz-transform: rotateY(-162deg);
+				-ms-transform: rotateY(-162deg);
+				transform: rotateY(-162deg);
+			} 50% {
+				-webkit-transform: rotateY(-180deg);
+				-moz-transform: rotateY(-180deg);
+				-ms-transform: rotateY(-180deg);
+				transform: rotateY(-180deg);
+			} 55% {
+				-webkit-transform: rotateY(-198deg);
+				-moz-transform: rotateY(-198deg);
+				-ms-transform: rotateY(-198deg);
+				transform: rotateY(-198deg);
+			} 60% {
+				-webkit-transform: rotateY(-216deg);
+				-moz-transform: rotateY(-216deg);
+				-ms-transform: rotateY(-216deg);
+				transform: rotateY(-216deg);
+			} 65% {
+				-webkit-transform: rotateY(-234deg);
+				-moz-transform: rotateY(-234deg);
+				-ms-transform: rotateY(-234deg);
+				transform: rotateY(-234deg);
+			} 70% {
+				-webkit-transform: rotateY(-252deg);
+				-moz-transform: rotateY(-252deg);
+				-ms-transform: rotateY(-252deg);
+				transform: rotateY(-252deg);
+			} 75% {
+				-webkit-transform: rotateY(-270deg);
+				-moz-transform: rotateY(-270deg);
+				-ms-transform: rotateY(-270deg);
+				transform: rotateY(-270deg);
+			} 80% {
+				-webkit-transform: rotateY(-288deg);
+				-moz-transform: rotateY(-288deg);
+				-ms-transform: rotateY(-288deg);
+				transform: rotateY(-288deg);
+			} 85% {
+				-webkit-transform: rotateY(-306deg);
+				-moz-transform: rotateY(-306deg);
+				-ms-transform: rotateY(-306deg);
+				transform: rotateY(-306deg);
+			} 90% {
+				-webkit-transform: rotateY(-324deg);
+				-moz-transform: rotateY(-324deg);
+				-ms-transform: rotateY(-324deg);
+				transform: rotateY(-324deg);
+			} 95% {
+				-webkit-transform: rotateY(-342deg);
+				-moz-transform: rotateY(-342deg);
+				-ms-transform: rotateY(-342deg);
+				transform: rotateY(-342deg);
+			} 100% {
+				-webkit-transform: rotateY(-360deg);
+				-moz-transform: rotateY(-360deg);
+				-ms-transform: rotateY(-360deg);
+				transform: rotateY(-360deg);
+			}
+
+			#carousel {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				-webkit-tranform: translateZ(-663px);
+				-moz-transform: translateZ(-663px);
+				transform: translateZ(-663px);
+				-webkit-transform-style: preserve-3d;
+				-moz-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+
+
+		}
+	</style>
 </head>
-
-<body onload()=drawing>
-	<canvas id="canvas" width="600" height="300"></canvas>
-	<script id="drawing">
-	var canvas = document.getElementById('canvas');
-	var ctx = canvas.getContext('2d');
-	var raf;
-
-	var ball = {
-		x: 100,
-		y: 100,
-		vx: 5,
-		vy: 2,
-		radius: 25,
-		color: 'blue',
-		draw: function() {
-			ctx.beginPath();
-			ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
-			ctx.closePath();
-			ctx.fillStyle = this.color;
-			ctx.fill();
-		}
-	};
-
-	function draw() {
-		ctx.clearRect(0,0, canvas.width, canvas.height);
-		ball.draw();
-		ball.x += ball.vx;
-		ball.y += ball.vy;
-		raf = window.requestAnimationFrame(draw);
-		if (ball.y + ball.vy > canvas.height || ball.y + ball.vy < 0) {
-			ball.vy = -ball.vy;
-		}
-		if (ball.x + ball.vx > canvas.width || ball.x + ball.vx < 0) {
-			ball.vx = -ball.vx;
-		}
-	}
-
-	canvas.addEventListener('mouseover', function(e){
-		raf = window.requestAnimationFrame(draw);
-	});
-
-	canvas.addEventListener("mouseout",function(e){
-		window.cancelAnimationFrame(raf);
-	});
-
-	ball.draw();
-  </script>
+<body>
+	<img id="spinner" src="usFlag.png"/>
+	<img id="spinner" src="ukFlag.png"/>
 </body>
 </html>
