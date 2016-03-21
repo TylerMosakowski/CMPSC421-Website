@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<!-- setting up the spinner for the flags -->
+	<style type="text/css">
+		#spinner {
+			-webkit-animation-name: spinner;
+			-webkit-animation-timing-function: linear;
+			-webkit-animation-iteration-count: infinite;
+			-webkit-animation-duration: 7s;
+			animation-name: spinner;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+			animation-duration: 7s;
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+		}
+		@-webkit-keyframes spinner {
+			from
+			{
+				-webkit-transform: rotateY(0deg);
+			}
+			to {
+			    	-webkit-transform: rotateY(-360deg);
+			}
+		}
+		/* all other browsers */
+		@keyframes spinner {
+			from {
+		    		-moz-transform: rotateY(0deg);
+		    		-ms-transform: rotateY(0deg);
+		    		transform: rotateY(0deg);
+		   	}
+		   	to
+		   	{
+			    -moz-transform: rotateY(-360deg);
+			    -ms-transform: rotateY(-360deg);
+			    transform: rotateY(-360deg);
+
+		   	}
+		}
+	</style>
+	<style type="text/css">
+		@-webkit-keyframes spin {
+			from {
+				-webkit-transform: rotateY(0deg);
+				-moz-transform: rotateY(0deg);
+				-ms-transform: rotateY(0deg);
+				transform: rotateY(0deg);
+			} to {
+				-webkit-transform: rotateY(-360deg);
+				-moz-transform: rotateY(-360deg);
+				-ms-transform: rotateY(-360deg);
+				transform: rotateY(-360deg);
+			}
+		}
+
+		#stage {
+			margin: 1em auto;
+			-webkit-perspective: 1200px;
+            -moz-perspective: 1200px;
+            -ms-perspective: 1200px;
+            perspective: 1200px;
+		}
+
+		#spin {
+			-webkit-animation-name: spin;
+			-webkit-animation-timing-function: linear;
+			-webkit-animation-iteration-count: infinite;
+			-webkit-animation-duration: 7s;
+			animation-name: spin;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+			animation-duration: 7s;
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+		}
+
+		#spin img {
+			position: absolute;
+			border: 1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div id="stage" style="padding-left: 300px; height: 160px;">
+	    <div id="spin" style="-webkit-transform-origin: 663px 0 0;">
+			<img style="-webkit-transform: rotateY(0deg) translateZ(663px);" src="usFlag.png" width="100" height="50"/>
+			<img style="-webkit-transform: rotateY(-18deg) translateZ(663px);" src="ukFlag.png" width="100" height="50"/>
+			<img style="-webkit-transform: rotateY(-36deg) translateZ(663px);" src="usFlag.png" width="100" height="50"/>
+			<img style="-webkit-transform: rotateY(-54deg) translateZ(663px);" src="ukFlag.png" width="100" height="50"/>
+			<img style="-webkit-transform: rotateY(-72deg) translateZ(663px);" src="usFlag.png" width="100" height="50"/>
+            <img style="-webkit-transform: rotateY(-90deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-108deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-126deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-144deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-162deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-180deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-198deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-216deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-234deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-252deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-270deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-288deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-306deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-324deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-342deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-360deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+	    </div>
+	</div>
+    <div id="stage" style="padding-left: 300px; height: 160px;">
+        <div id="spin" style="-webkit-transform-origin: 663px 0 0;">
+            <img style="-webkit-transform: rotateY(0deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-18deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-36deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-54deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-72deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-90deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-108deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-126deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-144deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-162deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-180deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-198deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-216deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-234deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-252deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-270deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-288deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-306deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-324deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-342deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-360deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+        </div>
+    </div>
+    <div id="stage" style="padding-left: 300px; height: 160px;">
+        <div id="spin" style="-webkit-transform-origin: 663px 0 0;">
+            <img style="-webkit-transform: rotateY(0deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-18deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-36deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-54deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-72deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-90deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-108deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-126deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-144deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-162deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-180deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-198deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-216deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-234deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-252deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-270deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-288deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-306deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-324deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-342deg) translateZ(663px);" src="ukFlag.png" width="100" height="50" />
+            <img style="-webkit-transform: rotateY(-360deg) translateZ(663px);" src="usFlag.png" width="100" height="50" />
+        </div>
+    </div>
+
+</body>
+</html>
