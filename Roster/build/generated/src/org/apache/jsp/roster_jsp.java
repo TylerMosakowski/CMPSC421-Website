@@ -3,8 +3,6 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import java.io.*;
-import java.util.*;
 
 public final class roster_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -32,7 +30,7 @@ public final class roster_jsp extends org.apache.jasper.runtime.HttpJspBase
     PageContext _jspx_page_context = null;
 
     try {
-      response.setContentType("text/html;charset=UTF-8");
+      response.setContentType("text/html");
       pageContext = _jspxFactory.getPageContext(this, request, response,
       			null, true, 8192, true);
       _jspx_page_context = pageContext;
@@ -43,95 +41,75 @@ public final class roster_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
-      out.write("\n");
+      out.write("<!--\n");
+      out.write("To change this license header, choose License Headers in Project Properties.\n");
+      out.write("To change this template file, choose Tools | Templates\n");
+      out.write("and open the template in the editor.\n");
+      out.write("-->\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <title></title>\n");
       out.write("        <meta charset=\"UTF-8\">\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
-      out.write("        \n");
-      out.write("        <script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js\"></script>\n");
-      out.write("        <script type=\"text/javascript\">\n");
-      out.write("    \twindow.onload = function(){\n");
-      out.write("                //JSP compiler adds an empty line before the xml content.\n");
-      out.write("                //we manually remove it.\n");
-      out.write("\t        var content = $.trim($('#rosterDIV').html());\n");
-      out.write("                //now remove the div element that is no longer needed\n");
-      out.write("                $('#rosterDIV').remove();\n");
-      out.write("                // parse the xml\n");
-      out.write("                content = $.parseXML(content);\n");
-      out.write("                //below is specific to the output of the JavaBeans XMLEncoder\n");
-      out.write("                $(content)\n");
-      out.write("                  // search for all <object> elements\n");
-      out.write("                  .find('object')\n");
-      out.write("                  // now we can play with each <object>\n");
-      out.write("                  .each(function(index, element) {\n");
-      out.write("                    // query & store the string field\n");
-      out.write("                    var field = $(element);\n");
-      out.write("                    // get the values we want\n");
-      out.write("                    var void1 = field.find(parts[0]).text();\n");
-      out.write("                    // and append some html in the <ol> element\n");
-      out.write("                    \n");
-      out.write("                    $(\"#mylist\")\n");
-      out.write("                            .append('<tr><td>' + void1 + '</td></tr>');\n");
-      out.write("\n");
-      out.write("                        \n");
-      out.write("                  });                \n");
-      out.write("            };\n");
-      out.write("        </script>\n");
       out.write("    </head>\n");
       out.write("    \n");
       out.write("    <body>\n");
-      out.write("        <div id=\"rosterDIV\">\n");
-      out.write("            ");
-      Roster.Rosters roster = null;
+      out.write("        ");
+      Roster Roster = null;
       synchronized (_jspx_page_context) {
-        roster = (Roster.Rosters) _jspx_page_context.getAttribute("roster", PageContext.PAGE_SCOPE);
-        if (roster == null){
-          roster = new Roster.Rosters();
-          _jspx_page_context.setAttribute("roster", roster, PageContext.PAGE_SCOPE);
+        Roster = (Roster) _jspx_page_context.getAttribute("Roster", PageContext.PAGE_SCOPE);
+        if (Roster == null){
+          Roster = new Roster();
+          _jspx_page_context.setAttribute("Roster", Roster, PageContext.PAGE_SCOPE);
         }
       }
       out.write("\n");
-      out.write("            ");
-      Roster.Student stud = null;
-      synchronized (_jspx_page_context) {
-        stud = (Roster.Student) _jspx_page_context.getAttribute("stud", PageContext.PAGE_SCOPE);
-        if (stud == null){
-          stud = new Roster.Student();
-          _jspx_page_context.setAttribute("stud", stud, PageContext.PAGE_SCOPE);
-        }
-      }
-      out.write("\n");
-      out.write("            ");
-
-                String get = request.getMethod();
-            
-                if (!get.equalsIgnoreCase("GET")) {
-                                   response.sendError(response.SC_METHOD_NOT_ALLOWED,
-                                      "GET requests only are allowed.");
-                }
-                // If it's a GET request, return the predictions.
-                else {
-                    // Object reference application has the value 
-                    // pageContext.getServletContext()
-                    roster.setServletContext(application);
-                    out.println(roster.getRosters());
-                }
-           
-      out.write("\n");
-      out.write("        </div>\n");
       out.write("        \n");
-      out.write("        <table border=\"1\" style=\"width:100%\" id=\"mylist\">\n");
-      out.write("            <th>Last_Name</th>\n");
-      out.write("            <th>First_Name</th>\n");
-      out.write("            <th>PSU_ID</th>\n");
-      out.write("            <th>Team</th>\n");
+      out.write("       \n");
+      out.write("        <div>\n");
+      out.write("            <h1> Class Roster for SWENG465/CMPSC421</h1>\n");
+      out.write("            <table>\n");
+      out.write("                <tr>\n");
+      out.write("                   <td> Last Name</td><td> First Name</td><td> PSU ID</td><td>Team</td>\n");
+      out.write("               </tr>\n");
+      out.write("               ");
+ for(int i =0; i <= 34; i++ )
+               {   
+               
       out.write("\n");
-      out.write("        </table>\n");
+      out.write("               <tr>\n");
+      out.write("                   <td>\n");
+      out.write("                       ");
+      out.write(org.apache.jasper.runtime.JspRuntimeLibrary.toString((((Roster)_jspx_page_context.findAttribute("Roster")).getStudents())));
       out.write("\n");
+      out.write("                   </td>\n");
+      out.write("                   <td>\n");
+      out.write("                       ");
+ out.print(Roster.students[i].getFName());
+                       
+      out.write("\n");
+      out.write("                   </td>\n");
+      out.write("                   <td>\n");
+      out.write("                       ");
+ out.print(Roster.students[i].getID());
+                       
+      out.write("\n");
+      out.write("                   </td>\n");
+      out.write("                   <td>\n");
+      out.write("                       ");
+ out.print(Roster.students[i].getID());
+                       
+      out.write("\n");
+      out.write("                   </td>\n");
+      out.write("                   \n");
+      out.write("               </tr>\n");
+      out.write("               ");
+}
+      out.write("\n");
+      out.write("            </table>\n");
+      out.write("            \n");
+      out.write("        </div>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
