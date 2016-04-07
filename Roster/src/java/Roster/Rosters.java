@@ -11,7 +11,20 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.beans.XMLEncoder; // simple and effective
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletContext;
+import org.json.JSONObject;
+import org.json.XML;
+
+
 /**
  *
  * @author bmk5282
@@ -33,7 +46,7 @@ public class Rosters {
     // getPredictions returns an XML representation of
     // the Predictions array
     public void setRosters(String ps) { } // no-op
-    public String getRosters() {
+    public JSONObject getRosters() {
 	// Has the ServletContext been set?
 	if (getServletContext() == null) 
 	    return null;      
@@ -63,10 +76,10 @@ public class Rosters {
 		while ((record = reader.readLine()) != null) {
 		    String[] parts = record.split("!");
 		    Student s = new Student();
-		    s.setFName(parts[0]);
-		    s.setLName(parts[1]);
-                    s.setTeam(parts[2]);
-                    s.setID(parts[3]);
+		    s.setLName(parts[0]);
+		    s.setFName(parts[1]);
+                    s.setID(parts[2]);
+                    s.setTeam(parts[3]);
                     
 		    students[i++] = s;
 		}
@@ -75,7 +88,7 @@ public class Rosters {
 	}
     }
 
-    private String toXML() {
+    private JSONObject toXML() {
 	String xml = null;
 	try {
 	    ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -86,6 +99,10 @@ public class Rosters {
 	}
 	catch(Exception e) { }
         //System.out.println(xml.trim());
-	return xml;
+        
+        JSONObject jobt = XML.toJSONObject(xml);
+        //System.out.println(jobt);
+        
+	return jobt;
     }
 }
