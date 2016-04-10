@@ -5,7 +5,7 @@ var http = require("http"),
     url = require("url"),
     path = require("path"),
     fs = require("fs");
-var port = process.argv[2] || 8080;
+var port = process.argv[2] || 8888;
 
 var ChatServer  = require('./CloudChat/ChatServer');
 var syllabus  = require('./Syllabus/syllabus');
@@ -107,8 +107,8 @@ app.get('/Syllabus/*', syllabus.gettool);
 //app.get('/EvalJSON/*', startPage.posttool);
 
 
-app.listen(8080, function() {
-  console.log('Server running at http://127.0.0.1:8080/');
+app.listen(8888, function() {
+  console.log('Server running at http://127.0.0.1:8888/');
 });
 
 function GET_Request_Handler(request, response) {
