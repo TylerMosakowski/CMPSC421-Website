@@ -31,6 +31,9 @@ app.get('/', function (req, res) {
 	res.send(data);
 	});
 });
+app.get('/WebRoster/rosterJSP',function(req,res){
+	res.redirect("http://localhost:8080/WebRoster/roster.jsp");
+})
 app.get('/about.html', function (req, res) {
 	fs.readFile('about.html', 'utf8', function (err,data) {
 		if (err) {
