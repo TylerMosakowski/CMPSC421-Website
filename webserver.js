@@ -9,7 +9,7 @@ var port = process.argv[2] || 8888;
 
 var ChatServer  = require('./CloudChat/ChatServer');
 var syllabus  = require('./Syllabus/syllabus');
-
+var request = require("request");
 
 //setup the root path
 var root = __dirname;
@@ -31,9 +31,6 @@ app.get('/', function (req, res) {
 	res.send(data);
 	});
 });
-app.get('/WebRoster/rosterJSP',function(req,res){
-	res.redirect("http://localhost:8080/WebRoster/web/roster.jsp");
-})
 app.get('/about.html', function (req, res) {
 	fs.readFile('about.html', 'utf8', function (err,data) {
 		if (err) {
@@ -141,3 +138,10 @@ function GET_Request_Handler(request, response) {
         });
     });
 }
+
+app.get("/Roster", function(req, res){
+    request ({
+        'url' : 'http://localhost:8080/Roster/roster.jsp',
+        'method' : 'GET'
+    }).pipe(res);
+});
