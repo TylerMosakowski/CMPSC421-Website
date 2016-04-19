@@ -8,8 +8,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="/path/to/jquery-latest.js"></script> 
+        <script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.25.8/js/jquery.tablesorter.min.js"></script>
+        
         <script type="text/javascript">
-    	window.onload = function(){
+    	$(document).ready(function(){
                 //JSP compiler adds an empty line before the xml content.
                 //we manually remove it.
 	        var content = $.trim($('#rosterDIV').html());
@@ -35,8 +40,13 @@
                             id + '</td><td>' + team + '</td></tr>');
 
                         
-                  });                
-            };
+                  }); 
+                  
+                  $("#mylist").tablesorter({sortList: [[0,0], [1,0]]});
+                  
+            });
+            
+            
         </script>
     </head>
     
@@ -60,12 +70,14 @@
            %>
         </div>
         
-        <table border="1" id="mylist">
-            <th bgcolor="blue"><font color="white">Last_Name</font></th>
-            <th bgcolor="blue"><font color="white">First_Name</font></th>
-            <th bgcolor="blue"><font color="white">PSU_ID</font></th>
-            <th bgcolor="blue"><font color="white">Team</font></th>
-
+        <table border="1" id="mylist" class="tablesorter">
+            <thead>
+                <th bgcolor="blue"><font color="white">Last_Name</font></th>
+                <th bgcolor="blue"><font color="white">First_Name</font></th>
+                <th bgcolor="blue"><font color="white">PSU_ID</font></th>
+                <th bgcolor="blue"><font color="white">Team</font></th>
+            </thead>
+            <tbody id="mylist"></tbody>
         </table>
 
     </body>

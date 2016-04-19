@@ -9,7 +9,7 @@ var port = process.argv[2] || 8888;
 
 var ChatServer  = require('./CloudChat/ChatServer');
 var syllabus  = require('./Syllabus/syllabus');
-
+var request = require("request");
 
 //setup the root path
 var root = __dirname;
@@ -138,3 +138,10 @@ function GET_Request_Handler(request, response) {
         });
     });
 }
+
+app.get("/Roster", function(req, res){
+    request ({
+        'url' : 'http://localhost:8080/Roster/roster.jsp',
+        'method' : 'GET'
+    }).pipe(res);
+});
