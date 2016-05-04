@@ -8,74 +8,185 @@
               sideFrameWin.location = "side.html";		
 	};
     </script>
-    <script>// At the time of this writing, Firefox and Webkit disagree on the
-        // name of the createObjectURL() function
-        var getBlobURL = (window.URL && URL.createObjectURL.bind(URL)) ||
-        (window.webkitURL && webkitURL.createObjectURL.bind(webkitURL)) ||
-        window.createObjectURL;
-        var revokeBlobURL = (window.URL && URL.revokeObjectURL.bind(URL)) ||
-        (window.webkitURL && webkitURL.revokeObjectURL.bind(webkitURL)) ||
-        window.revokeObjectURL;
-
-        // When the document is loaded, add event handlers to the droptarget element
-        // so that it can handle drops of files
-        window.onload = function() {
-        // Find the element we want to add handlers to.
-        var droptarget = document.getElementById("droptarget");
-
-        // When the user starts dragging files over the droptarget, highlight it.
-        droptarget.ondragenter = function(e) {
-            // If the drag is something other than files, ignore it.
-            // The HTML5 dropzone attribute will simplify this when implemented.
-            var types = e.dataTransfer.types;
-            if (!types ||
-                (types.contains && types.contains("Files")) ||
-                (types.indexOf && types.indexOf("Files") != -1)) {
-                droptarget.classList.add("active"); // Highlight droptarget
-                return false;                       // We're interested in the drag
-            }
-        };
-        // Unhighlight the drop zone if the user moves out of it
-        droptarget.ondragleave = function() {
-            droptarget.classList.remove("active");
-        };
-
-        // This handler just tells the browser to keep sending notifications
-        droptarget.ondragover = function(e) { return false; };
-
-        // When the user drops files on us, get their URLs and display thumbnails.
-        droptarget.ondrop = function(e) {
-            var files = e.dataTransfer.files;            // The dropped files
-            for(var i = 0; i < files.length; i++) {      // Loop through them all
-                var type = files[i].type;
-                if (type.substring(0,6) !== "image/")    // Skip any nonimages
-                    continue;
-                var img = document.createElement("img"); // Create an <img> element
-                img.src = getBlobURL(files[i]);          // Use Blob URL with <img>
-                img.onload = function() {                // When it loads
-                    this.width = 100;                    // adjust its size and
-                    document.body.appendChild(this);     // insert into document.
-                    revokeBlobURL(this.src);             // But don't leak memory!
-                }
-            }
-
-            droptarget.classList.remove("active");       // Unhighlight droptarget
-            return false;                                // We've handled the drop
-        }
-    };
-    </script>
     <style> /* Simple styles for the file drop target */
         #droptarget { border: solid black 2px; width: 200px; height: 200px; }
         #droptarget.active { border: solid red 4px; }
+        #c {   width:   640px;
+                height: 360px;
+                border:1px solid #111;
+                float:left;
+                background:#eee;
+        }
+        #main{
+            width:650px;
+            margin:auto;
+        }
     </style>
 </head>
 <body>
-    <h1 class="heading">Slide Editing</h1>
-    <button type="button">Add Text</button>
-    <button type="button">Add Float Text</button>
-    <button type="button">Add Picture</button>
-    <br/>
-    <textarea rows="4" cols="50"></textarea>
-    <div id="droptarget">Drop Image Files Here</div>
+    <div id="main">
+        <canvas id="c" style="border:2px solid black;" width="200" height="200"></canvas>
+    </div>
+    <div>
+        <input type="file" id="imageLoader" name="imageLoader"/>
+        <button id="upload">Upload</button>
+    </div>
+    <script>
+        var imageLoader = document.getElementById('imageLoader');
+        imageLoader.addEventListener('change', handleImage, false);
+        var canvas = document.getElementById('c');
+        var ctx = canvas.getContext('2d');
+
+
+        function handleImage(e){
+            var reader = new FileReader();
+            reader.onload = function(event){
+                var img = new Image();
+                img.onload = function(){
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img,0,0);
+                }
+                img.src = event.target.result;
+            }
+            reader.readAsDataURL(e.target.files[0]);     
+        }
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="text.js"></script><!-- Library to help text -->
+    <script type="text/javascript">
+    function init() {
+        var button = document.getElementById('upload');
+        var canvas = document.getElementById('c');
+        var ctx = canvas.getContext('2d');
+        drawDemo(ctx);
+        initUpload(canvas, button);
+    }
+    function initUpload(canvas, button) {
+        button.onclick = function() {
+            var xhr = new XMLHttpRequest();
+            var formData = new FormData();
+            var dataURI = canvas.toDataURL();
+            var blob = dataURItoBlob(dataURI);
+            formData.append('upload.png', blob);
+            xhr.open('POST', '/upload', true);
+            xhr.onload = function(e) {
+                console.log('success');
+            };
+            xhr.send(formData);
+        }
+    }
+    function dataURItoBlob(dataURI) {
+        // convert base64 to raw binary data held in a string
+        // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+        var byteString = atob(dataURI.split(',')[1]);
+        // separate out the mime component
+        var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+        // write the bytes of the string to an ArrayBuffer
+        var ab = new ArrayBuffer(byteString.length);
+        var dw = new DataView(ab);
+        for(var i = 0; i < byteString.length; i++) {
+            dw.setUint8(i, byteString.charCodeAt(i));
+        }
+        // write the ArrayBuffer to a blob, and you're done
+        return new Blob([ab], {type: mimeString});
+    }
+    </script>
+        <script type="text/javascript">
+            $('#c').mousedown(function(e){
+                if ($('#textAreaPopUp').length == 0) {
+                    var mouseX = e.pageX - this.offsetLeft + $("#c").position().left;
+                    var mouseY = e.pageY - this.offsetTop;
+                    //append a text area box to the canvas where the user clicked to enter in a comment
+                    var textArea = "<div id='textAreaPopUp' style='position:absolute;top:"+mouseY+"px;left:"+mouseX+"px;z-index:30;'><textarea id='textareaTest' style='width:100px;height:50px;'></textarea>";
+                    var saveButton = "<input type='button' value='save' id='saveText' onclick='saveTextFromArea("+mouseY+","+mouseX+");'></div>";
+                    var appendString = textArea + saveButton;
+                    $("#main").append(appendString);
+                } else {
+                    $('textarea#textareaTest').remove();
+                    $('#saveText').remove();
+                    $('#textAreaPopUp').remove();
+                    var mouseX = e.pageX - this.offsetLeft + $("#c").position().left;
+                    var mouseY = e.pageY - this.offsetTop;
+                    //append a text area box to the canvas where the user clicked to enter in a comment
+                    var textArea = "<div id='textAreaPopUp' style='position:absolute;top:"+mouseY+"px;left:"+mouseX+"px;z-index:30;'><textarea id='textareaTest' style='width:100px;height:50px;'></textarea>";
+                    var saveButton = "<input type='button' value='save' id='saveText' onclick='saveTextFromArea("+mouseY+","+mouseX+");'></div>";
+                    var appendString = textArea + saveButton;
+                    $("#main").append(appendString);
+                }
+            });
+           
+            function saveTextFromArea(y,x){
+                //get the value of the textarea then destroy it and the save button
+                var text = $('textarea#textareaTest').val();
+                $('textarea#textareaTest').remove();
+                $('#saveText').remove();
+                $('#textAreaPopUp').remove();
+                //get the canvas and add the text functions
+                var canvas = document.getElementById('c');
+                var ctx = canvas.getContext('2d');
+                var cw = canvas.clientWidth;
+                var ch = canvas.clientHeight;
+                canvas.width = cw;
+                canvas.height = ch;
+                //break the text into arrays based on a text width of 100px
+                var phraseArray = getLines(ctx,text,100);
+                // this adds the text functions to the ctx
+                CanvasTextFunctions.enable(ctx);
+                var counter = 0;
+                //set the font styles
+                var font = "sans";
+                var fontsize = 16;
+                ctx.strokeStyle = "rgba(237,229,0,1)";
+                ctx.shadowOffsetX = 2;
+                ctx.shadowOffsetY = 2;
+                ctx.shadowBlur = 1;
+                ctx.shadowColor = "rgba(0,0,0,1)";
+                //draw each phrase to the screen, making the top position 20px more each time so it appears there are line breaks
+                $.each(phraseArray, function() {
+                    //set the placement in the canvas
+                    var lineheight = fontsize * 1.5;
+                    var newline = ++counter;
+                    newline = newline * lineheight;
+                    var topPlacement = y - $("#c").position().top + newline;
+                    var leftPlacement = x - $("#c").position().left;
+                    text = this;
+                    //draw the text
+                    ctx.drawText(font, fontsize, leftPlacement, topPlacement, text);
+                    ctx.save();
+                    ctx.restore();
+                });
+                //reset the drop shadow so any other drawing don't have them
+                ctx.shadowOffsetX = 0;
+                ctx.shadowOffsetY = 0;
+                ctx.shadowBlur = 0;
+                ctx.shadowColor = "rgba(0,0,0,0)";
+            }
+           
+            function getLines(ctx,phrase,maxPxLength) {
+                //break the text area text into lines based on "box" width
+                var wa=phrase.split(" "),
+                phraseArray=[],
+                lastPhrase="",
+                l=maxPxLength,
+                measure=0;
+                ctx.font = "16px sans-serif";
+                for (var i=0;i<wa.length;i++) {
+                    var w=wa[i];
+                    measure=ctx.measureText(lastPhrase+w).width;
+                    if (measure<l) {
+                        lastPhrase+=(" "+w);
+                    }else {
+                        phraseArray.push(lastPhrase);
+                        lastPhrase=w;
+                    }
+                    if (i===wa.length-1) {
+                        phraseArray.push(lastPhrase);
+                        break;
+                    }
+                }
+                return phraseArray;
+            }
+        </script>
 </body>
 </html>
