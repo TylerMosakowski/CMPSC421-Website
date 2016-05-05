@@ -9,7 +9,7 @@ var port = process.argv[2] || 8888;
 
 var ChatServer  = require('./CloudChat/ChatServer');
 var syllabus  = require('./Syllabus/syllabus');
-var request = require("request");
+
 
 //setup the root path
 var root = __dirname;
@@ -106,6 +106,18 @@ app.get('/CloudChat/*', ChatServer.gettool);
 app.get('/Syllabus/*', syllabus.gettool);
 //app.get('/EvalJSON/*', startPage.posttool);
 
+app.post('/upload', function(req, res) {
+    if(!req.busboy) {
+        return res.send(500);
+    }
+
+    req.busboy.on('file', function(fieldname, file) {
+        var p = path.join(uploadDir, fieldname);
+        file.pipe(fs.createWriteStream(p));
+        console.log('saved file to', p);
+        res.send(200);
+    });
+});
 
 app.listen(8888, function() {
   console.log('Server running at http://127.0.0.1:8888/');
@@ -138,10 +150,6 @@ function GET_Request_Handler(request, response) {
         });
     });
 }
-
-app.get("/Roster", function(req, res){
-    request ({
-        'url' : 'http://localhost:8080/Roster/roster.jsp',
-        'method' : 'GET'
-    }).pipe(res);
+app.get("/RosterJTable", function(req, res){
+	res.redirect("http://localhost:8080/WebRosterJTable/");
 });
